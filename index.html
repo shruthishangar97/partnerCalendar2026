@@ -1,0 +1,582 @@
+<title>APAC Partner Calendar</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+
+  :root{
+    --bg:#f2f0eb;
+    --panel:#ffffff;
+    --panel-border:#e6e1d6;
+    --weekend-bg:#f7f5f0;
+    --text:#21212b;
+    --text-muted:#68667a;
+    --text-faint:#a7a4b8;
+    --accent:#3694fc;
+    --accent-strong:#025afb;
+    --ring:#3694fc;
+
+    --cat-training:#6100ff;
+    --cat-training-bg:rgba(97,0,255,0.09);
+    --cat-training-bg-strong:rgba(97,0,255,0.16);
+
+    --cat-events:#12b3a0;
+    --cat-events-bg:rgba(18,179,160,0.10);
+    --cat-events-bg-strong:rgba(18,179,160,0.18);
+
+    --cat-capstone:#ff5b8a;
+    --cat-capstone-bg:rgba(255,91,138,0.11);
+    --cat-capstone-bg-strong:rgba(255,91,138,0.19);
+
+    --shadow-tooltip:0 12px 32px rgba(33,33,43,0.18), 0 2px 8px rgba(33,33,43,0.10);
+    --shadow-card:0 1px 2px rgba(33,33,43,0.04);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1b1b23;
+      --panel:#25252f;
+      --panel-border:#37374400;
+      --panel-border:#3a3a48;
+      --weekend-bg:#20202a;
+      --text:#f2f0eb;
+      --text-muted:#a9a7bb;
+      --text-faint:#6f6d81;
+      --accent:#5fa8fd;
+      --accent-strong:#7fb9fd;
+      --ring:#5fa8fd;
+
+      --cat-training:#b98fff;
+      --cat-training-bg:rgba(185,143,255,0.14);
+      --cat-training-bg-strong:rgba(185,143,255,0.24);
+
+      --cat-events:#36ead0;
+      --cat-events-bg:rgba(54,234,208,0.13);
+      --cat-events-bg-strong:rgba(54,234,208,0.22);
+
+      --cat-capstone:#ff8fac;
+      --cat-capstone-bg:rgba(255,143,172,0.15);
+      --cat-capstone-bg-strong:rgba(255,143,172,0.25);
+
+      --shadow-tooltip:0 12px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3);
+      --shadow-card:0 1px 2px rgba(0,0,0,0.2);
+    }
+  }
+
+  :root[data-theme="dark"]{
+    --bg:#1b1b23;
+    --panel:#25252f;
+    --panel-border:#3a3a48;
+    --weekend-bg:#20202a;
+    --text:#f2f0eb;
+    --text-muted:#a9a7bb;
+    --text-faint:#6f6d81;
+    --accent:#5fa8fd;
+    --accent-strong:#7fb9fd;
+    --ring:#5fa8fd;
+
+    --cat-training:#b98fff;
+    --cat-training-bg:rgba(185,143,255,0.14);
+    --cat-training-bg-strong:rgba(185,143,255,0.24);
+
+    --cat-events:#36ead0;
+    --cat-events-bg:rgba(54,234,208,0.13);
+    --cat-events-bg-strong:rgba(54,234,208,0.22);
+
+    --cat-capstone:#ff8fac;
+    --cat-capstone-bg:rgba(255,143,172,0.15);
+    --cat-capstone-bg-strong:rgba(255,143,172,0.25);
+
+    --shadow-tooltip:0 12px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3);
+    --shadow-card:0 1px 2px rgba(0,0,0,0.2);
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Be Vietnam Pro', Arial, sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:40px 28px 64px;
+  }
+
+  header.top{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:36px;
+    padding-bottom:28px;
+    border-bottom:1px solid var(--panel-border);
+  }
+
+  .brand-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .brand-row svg.logo{ height:22px; width:auto; display:block; }
+  .brand-row svg.smile{ height:18px; width:auto; display:block; }
+
+  .title-block h1{
+    font-size:2.15rem;
+    font-weight:600;
+    letter-spacing:-0.4px;
+    line-height:1.08;
+    margin:14px 0 6px;
+    text-wrap:balance;
+  }
+  .title-block p{
+    margin:0;
+    font-size:1rem;
+    font-weight:300;
+    color:var(--text-muted);
+    max-width:52ch;
+  }
+
+  .legend{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:flex-start;
+    padding:16px 20px;
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:16px;
+    box-shadow:var(--shadow-card);
+  }
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:0.83rem;
+    font-weight:500;
+    white-space:nowrap;
+  }
+  .legend-item .swatch{
+    width:11px; height:11px;
+    border-radius:3.5px;
+    flex:none;
+  }
+  .legend .swatch.training{ background:var(--cat-training); }
+  .legend .swatch.events{ background:var(--cat-events); }
+  .legend .swatch.capstone{ background:var(--cat-capstone); }
+
+  .range-note{
+    font-size:0.72rem;
+    color:var(--text-faint);
+    margin-top:2px;
+  }
+
+  .months-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:24px;
+  }
+
+  .month-card{
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:20px;
+    padding:20px 18px 16px;
+    box-shadow:var(--shadow-card);
+  }
+
+  .month-title{
+    font-size:1.15rem;
+    font-weight:600;
+    letter-spacing:-0.2px;
+    margin:0 0 14px 4px;
+  }
+
+  .weekday-row{
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    margin-bottom:6px;
+  }
+  .weekday-row span{
+    font-size:0.68rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--text-faint);
+    text-align:center;
+    padding-bottom:4px;
+  }
+
+  .day-grid{
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    gap:4px;
+  }
+
+  .day-cell{
+    min-height:74px;
+    border-radius:10px;
+    padding:5px 4px 4px;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    position:relative;
+  }
+  .day-cell.in-month.weekend{ background:var(--weekend-bg); }
+  .day-cell.blank{ visibility:hidden; }
+
+  .day-num{
+    font-size:0.72rem;
+    font-weight:500;
+    font-variant-numeric:tabular-nums;
+    color:var(--text-muted);
+    padding-left:3px;
+  }
+  .day-cell.is-today .day-num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:19px; height:19px;
+    border-radius:50%;
+    background:var(--ring);
+    color:#fff;
+    font-weight:600;
+    padding-left:0;
+  }
+
+  .pill{
+    font-size:0.63rem;
+    font-weight:500;
+    line-height:1.25;
+    padding:2.5px 5px 2.5px 6px;
+    border-radius:6px;
+    border-left:3px solid transparent;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    cursor:pointer;
+    color:var(--text);
+    transition:filter 0.12s ease;
+  }
+  .pill.training{ background:var(--cat-training-bg); border-left-color:var(--cat-training); }
+  .pill.events{ background:var(--cat-events-bg); border-left-color:var(--cat-events); }
+  .pill.capstone{ background:var(--cat-capstone-bg); border-left-color:var(--cat-capstone); }
+  .pill:hover, .pill:focus-visible{
+    background:var(--cat-training-bg-strong);
+  }
+  .pill.events:hover, .pill.events:focus-visible{ background:var(--cat-events-bg-strong); }
+  .pill.capstone:hover, .pill.capstone:focus-visible{ background:var(--cat-capstone-bg-strong); }
+  .pill:focus-visible{ outline:2px solid var(--ring); outline-offset:1px; }
+
+  footer.foot{
+    margin-top:32px;
+    padding-top:20px;
+    border-top:1px solid var(--panel-border);
+    font-size:0.78rem;
+    color:var(--text-faint);
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    justify-content:space-between;
+  }
+
+  #tooltip{
+    position:fixed;
+    max-width:270px;
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:12px;
+    padding:12px 14px;
+    box-shadow:var(--shadow-tooltip);
+    font-size:0.78rem;
+    line-height:1.45;
+    color:var(--text);
+    opacity:0;
+    transform:translateY(4px);
+    pointer-events:none;
+    transition:opacity 0.12s ease, transform 0.12s ease;
+    z-index:50;
+  }
+  #tooltip.visible{ opacity:1; transform:translateY(0); }
+  #tooltip .tt-cat{
+    display:inline-block;
+    font-size:0.62rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    margin-bottom:5px;
+    padding:2px 7px;
+    border-radius:20px;
+  }
+  #tooltip .tt-cat.training{ background:var(--cat-training-bg-strong); color:var(--cat-training); }
+  #tooltip .tt-cat.events{ background:var(--cat-events-bg-strong); color:var(--cat-events); }
+  #tooltip .tt-cat.capstone{ background:var(--cat-capstone-bg-strong); color:var(--cat-capstone); }
+  #tooltip .tt-title{ font-weight:600; margin-bottom:4px; text-wrap:balance; }
+  #tooltip .tt-row{ color:var(--text-muted); font-weight:300; }
+  #tooltip .tt-row + .tt-row{ margin-top:1px; }
+  #tooltip .tt-row b{ font-weight:500; color:var(--text); font-variant-numeric:tabular-nums; }
+
+  @media (max-width: 860px){
+    .months-grid{ grid-template-columns:1fr; }
+    header.top{ flex-direction:column; align-items:flex-start; }
+    .legend{ width:100%; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="title-block">
+      <div class="brand-row" aria-hidden="true">
+        <svg class="logo" viewBox="0 0 864.3 400.99" xmlns="http://www.w3.org/2000/svg"><path fill="#3694fd" d="M333.62,62.55c-18.86-1.19-34.4,14.35-33.21,33.21.98,15.55,13.6,28.17,29.15,29.15,18.86,1.19,34.4-14.35,33.21-33.21-.98-15.55-13.6-28.17-29.15-29.15Z"/><path fill="currentColor" d="M265.33,82.11h-50.27c-1.66,0-3,1.34-3,3v147.41c0,1.02-1.35,1.39-1.86.5L123.2,83.61c-.54-.92-1.52-1.49-2.59-1.49h-55.12c-1.66,0-3,1.34-3,3v244.74c0,1.66,1.34,3,3,3h50.27c1.66,0,3-1.34,3-3v-146.82c0-1.02,1.35-1.39,1.86-.5l87,148.84c.54.92,1.52,1.49,2.59,1.49h55.13c1.66,0,3-1.34,3-3V85.11c0-1.66-1.34-3-3-3Z"/><path fill="currentColor" d="M353.85,141.37c-7.03,1.51-14.5,2.33-22.27,2.33s-15.24-.82-22.27-2.33c-1.87-.4-3.62,1.02-3.62,2.93v185.55c0,1.66,1.34,3,3,3h45.78c1.66,0,3-1.34,3-3v-185.55c0-1.91-1.76-3.33-3.62-2.93Z"/><path fill="currentColor" d="M798.81,286.94h-104.66c-.55,0-1-.45-1-1v-54.5c0-.55.45-1,1-1h85.42c1.66,0,3-1.34,3-3v-39.91c0-1.66-1.34-3-3-3h-85.42c-.55,0-1-.45-1-1v-54.5c0-.55.45-1,1-1h104.66c1.66,0,3-1.34,3-3v-39.91c0-1.66-1.34-3-3-3h-158.92c-1.66,0-3,1.34-3,3v244.74c0,1.66,1.34,3,3,3h158.92c1.66,0,3-1.34,3-3v-39.91c0-1.66-1.34-3-3-3Z"/><path fill="currentColor" d="M601.92,239.96h-53.14c-1.44,0-2.69,1.02-2.95,2.43-2.46,13.53-7.09,24.33-13.89,32.37-7.65,9.07-18.49,13.6-32.5,13.6-10.78,0-20.05-3.29-27.81-9.89-7.76-6.59-13.74-15.89-17.95-27.9-4.2-12.01-6.31-26.25-6.31-42.73,0-16.01,1.99-30.13,5.98-42.38,3.99-12.24,9.91-21.77,17.79-28.6,7.87-6.83,17.41-10.24,28.62-10.24,12.72,0,23.07,4.24,31.04,12.71,6.99,7.43,11.82,17.39,14.51,29.87.29,1.37,1.52,2.34,2.92,2.34h52.94c1.88,0,3.29-1.71,2.95-3.56-5.27-28.79-16.07-51.06-32.42-66.79-17.14-16.48-41.12-24.72-71.95-24.72-22.42,0-41.93,5.42-58.53,16.24-16.6,10.83-29.38,26.08-38.32,45.73-8.95,19.66-13.42,42.79-13.42,69.39s4.69,51.03,14.07,70.45c9.38,19.42,22.31,34.32,38.81,44.67,16.49,10.36,35.3,15.54,56.43,15.54,20.48,0,38.05-3.88,52.71-11.65,14.66-7.77,26.52-19.01,35.57-33.73,8.49-13.79,14.42-30.34,17.79-49.63.32-1.85-1.08-3.54-2.95-3.54Z"/></svg>
+        <svg class="smile" viewBox="0 0 381.33 381.33" xmlns="http://www.w3.org/2000/svg"><circle fill="#3694fd" cx="93.73" cy="93.73" r="31.24"/><circle fill="#3694fd" cx="193.35" cy="93.73" r="31.24"/><path fill="currentColor" d="M315.85,124.97h-45.79c-1.64,0-2.96,1.32-3,2.97-1.56,76.01-63.11,137.56-139.12,139.12-1.64.03-2.97,1.35-2.97,3v45.79c0,1.67,1.36,3.03,3.03,3,104.52-1.61,189.25-86.33,190.85-190.85.03-1.67-1.34-3.03-3-3.03Z"/></svg>
+      </div>
+      <h1>APAC partner calendar</h1>
+      <p>Build AI Agents 101, NiCE World APAC stops, and Sydney Capstone Training — everything APAC partners need to know, September through December 2026.</p>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><span class="swatch training"></span>Online training — Build AI Agents 101</div>
+      <div class="legend-item"><span class="swatch events"></span>General events — NiCE World APAC</div>
+      <div class="legend-item"><span class="swatch capstone"></span>Capstone training — Sydney</div>
+      <div class="range-note">Hover or tap any event for date, time and region.</div>
+    </div>
+  </header>
+
+  <div class="months-grid" id="monthsGrid"></div>
+
+  <footer class="foot">
+    <span>Times shown are local to the event's own timezone (IST / AEST / ACST / SGT / JST). Confirm before booking travel.</span>
+    <span>Compiled for GSI &amp; channel partners · APAC region only · Updated Sep 2, 2026</span>
+  </footer>
+
+</div>
+
+<div id="tooltip" role="tooltip"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var MONTHS = [
+    {year:2026, month:8,  name:"September 2026"},
+    {year:2026, month:9,  name:"October 2026"},
+    {year:2026, month:10, name:"November 2026"},
+    {year:2026, month:11, name:"December 2026"}
+  ];
+  var WEEKDAYS = ["Su","Mo","Tu","We","Th","Fr","Sa"];
+  var MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+  // --- Event data -------------------------------------------------------
+  // dates are [year, monthIndex(0-based), day]
+  var EVENTS = [
+    // Online training — Cognigy Essentials Technical Workshop (APAC dates only)
+    { cat:"training", chip:"Build AI Agents 101",
+      title:"Build AI Agents 101",
+      start:[2026,8,15], end:[2026,8,16],
+      time:"8:00 AM–12:00 PM IST", place:"APAC region · live online",
+      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session." },
+    { cat:"training", chip:"Build AI Agents 101",
+      title:"Build AI Agents 101",
+      start:[2026,9,6], end:[2026,9,7],
+      time:"8:00 AM–12:00 PM IST", place:"APAC region · live online",
+      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session." },
+    { cat:"training", chip:"Build AI Agents 101",
+      title:"Build AI Agents 101",
+      start:[2026,10,3], end:[2026,10,4],
+      time:"8:00 AM–12:00 PM IST", place:"APAC region · live online",
+      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session." },
+    { cat:"training", chip:"Build AI Agents 101",
+      title:"Build AI Agents 101",
+      start:[2026,11,15], end:[2026,11,16],
+      time:"8:00 AM–12:00 PM IST", place:"APAC region · live online",
+      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session." },
+
+    // General events — NiCE World APAC 2026 (APAC city stops only)
+    { cat:"events", chip:"NiCE World APAC",
+      title:"NiCE World APAC 2026 — Sydney",
+      start:[2026,8,3], end:[2026,8,3],
+      time:"1:00 PM AEST start", place:"Sydney, Australia",
+      note:"Regional AI · CX · Innovation tour stop. Registration reported full." },
+    { cat:"events", chip:"NiCE World APAC",
+      title:"NiCE World APAC 2026 — Adelaide",
+      start:[2026,8,10], end:[2026,8,10],
+      time:"2:00 PM ACST start", place:"Adelaide, Australia",
+      note:"Regional AI · CX · Innovation tour stop." },
+    { cat:"events", chip:"NiCE World APAC",
+      title:"NiCE World APAC 2026 — Tokyo",
+      start:[2026,8,11], end:[2026,8,11],
+      time:"Time TBC — see Japan event page", place:"Tokyo, Japan",
+      note:"Regional AI · CX · Innovation tour stop." },
+    { cat:"events", chip:"NiCE World APAC",
+      title:"NiCE World APAC 2026 — Mumbai",
+      start:[2026,8,23], end:[2026,8,23],
+      time:"4:00 PM IST start", place:"Mumbai, India",
+      note:"Regional AI · CX · Innovation tour stop." },
+    { cat:"events", chip:"NiCE World APAC",
+      title:"NiCE World APAC 2026 — New Delhi",
+      start:[2026,8,25], end:[2026,8,25],
+      time:"4:00 PM IST start", place:"New Delhi, India",
+      note:"Regional AI · CX · Innovation tour stop." },
+    { cat:"events", chip:"NiCE World APAC",
+      title:"NiCE World APAC 2026 — Singapore",
+      start:[2026,9,1], end:[2026,9,1],
+      time:"2:00 PM SGT start", place:"Singapore",
+      note:"Regional AI · CX · Innovation tour stop." },
+
+    // Capstone training
+    { cat:"capstone", chip:"Capstone training",
+      title:"Capstone Training — Sydney",
+      start:[2026,8,22], end:[2026,8,25],
+      time:"9:00 AM–5:00 PM AEST · in person", place:"Sydney, Australia",
+      note:"In-person capstone training session for APAC partners." }
+  ];
+
+  function dateKey(y,m,d){ return y+"-"+(m+1)+"-"+d; }
+  function fmtRange(start, end){
+    var s = new Date(start[0], start[1], start[2]);
+    var e = new Date(end[0], end[1], end[2]);
+    if (start[0]===end[0] && start[1]===end[1] && start[2]===end[2]){
+      return MONTH_NAMES[start[1]] + " " + start[2] + ", " + start[0];
+    }
+    if (start[1]===end[1]){
+      return MONTH_NAMES[start[1]] + " " + start[2] + "–" + end[2] + ", " + start[0];
+    }
+    return MONTH_NAMES[start[1]] + " " + start[2] + " – " + MONTH_NAMES[end[1]] + " " + end[2] + ", " + start[0];
+  }
+
+  // expand events into a per-day lookup map
+  var byDay = {};
+  EVENTS.forEach(function(ev){
+    var d = new Date(ev.start[0], ev.start[1], ev.start[2]);
+    var endD = new Date(ev.end[0], ev.end[1], ev.end[2]);
+    while (d <= endD){
+      var k = dateKey(d.getFullYear(), d.getMonth(), d.getDate());
+      (byDay[k] = byDay[k] || []).push(ev);
+      d.setDate(d.getDate()+1);
+    }
+  });
+
+  // --- Render -------------------------------------------------------
+  var grid = document.getElementById("monthsGrid");
+  var today = new Date();
+  var todayKey = dateKey(today.getFullYear(), today.getMonth(), today.getDate());
+
+  MONTHS.forEach(function(m){
+    var card = document.createElement("div");
+    card.className = "month-card";
+
+    var title = document.createElement("h2");
+    title.className = "month-title";
+    title.textContent = m.name;
+    card.appendChild(title);
+
+    var wdRow = document.createElement("div");
+    wdRow.className = "weekday-row";
+    WEEKDAYS.forEach(function(w){
+      var s = document.createElement("span");
+      s.textContent = w;
+      wdRow.appendChild(s);
+    });
+    card.appendChild(wdRow);
+
+    var dayGrid = document.createElement("div");
+    dayGrid.className = "day-grid";
+
+    var firstWeekday = new Date(m.year, m.month, 1).getDay();
+    var daysInMonth = new Date(m.year, m.month+1, 0).getDate();
+
+    for (var i=0; i<firstWeekday; i++){
+      var blank = document.createElement("div");
+      blank.className = "day-cell blank";
+      dayGrid.appendChild(blank);
+    }
+
+    for (var day=1; day<=daysInMonth; day++){
+      var cell = document.createElement("div");
+      var weekdayIdx = (firstWeekday + day - 1) % 7;
+      var isWeekend = (weekdayIdx===0 || weekdayIdx===6);
+      var k = dateKey(m.year, m.month, day);
+      cell.className = "day-cell in-month" + (isWeekend ? " weekend" : "") + (k===todayKey ? " is-today" : "");
+
+      var num = document.createElement("div");
+      num.className = "day-num";
+      num.textContent = day;
+      cell.appendChild(num);
+
+      (byDay[k] || []).forEach(function(ev){
+        var pill = document.createElement("div");
+        pill.className = "pill " + ev.cat;
+        pill.textContent = ev.chip;
+        pill.tabIndex = 0;
+        pill.addEventListener("mouseenter", function(e){ showTip(ev, pill); });
+        pill.addEventListener("mouseleave", hideTip);
+        pill.addEventListener("focus", function(e){ showTip(ev, pill); });
+        pill.addEventListener("blur", hideTip);
+        pill.addEventListener("click", function(e){
+          e.stopPropagation();
+          if (tip.classList.contains("visible") && tip._current===ev){ hideTip(); }
+          else { showTip(ev, pill); }
+        });
+        cell.appendChild(pill);
+      });
+
+      dayGrid.appendChild(cell);
+    }
+
+    var totalCells = firstWeekday + daysInMonth;
+    var trailing = (7 - (totalCells % 7)) % 7;
+    for (var j=0; j<trailing; j++){
+      var blank2 = document.createElement("div");
+      blank2.className = "day-cell blank";
+      dayGrid.appendChild(blank2);
+    }
+
+    card.appendChild(dayGrid);
+    grid.appendChild(card);
+  });
+
+  document.addEventListener("click", hideTip);
+
+  // --- Tooltip -------------------------------------------------------
+  var tip = document.getElementById("tooltip");
+  var catLabel = { training:"Online training", events:"General event", capstone:"Capstone training" };
+
+  function showTip(ev, target){
+    tip._current = ev;
+    tip.innerHTML =
+      '<span class="tt-cat ' + ev.cat + '">' + catLabel[ev.cat] + '</span>' +
+      '<div class="tt-title">' + ev.title + '</div>' +
+      '<div class="tt-row"><b>' + fmtRange(ev.start, ev.end) + '</b></div>' +
+      '<div class="tt-row">' + ev.time + '</div>' +
+      '<div class="tt-row">' + ev.place + '</div>' +
+      (ev.note ? '<div class="tt-row">' + ev.note + '</div>' : '');
+
+    var r = target.getBoundingClientRect();
+    tip.style.visibility = "hidden";
+    tip.classList.add("visible");
+    var tw = tip.offsetWidth, th = tip.offsetHeight;
+    var left = r.left + r.width/2 - tw/2;
+    left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
+    var top = r.top - th - 10;
+    if (top < 8){ top = r.bottom + 10; }
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+    tip.style.visibility = "visible";
+  }
+  function hideTip(){
+    tip.classList.remove("visible");
+    tip._current = null;
+  }
+  tip.addEventListener("click", function(e){ e.stopPropagation(); });
+
+})();
+</script>
