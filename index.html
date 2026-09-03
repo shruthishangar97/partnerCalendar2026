@@ -301,7 +301,19 @@
     transition:opacity 0.12s ease, transform 0.12s ease;
     z-index:50;
   }
-  #tooltip.visible{ opacity:1; transform:translateY(0); }
+  #tooltip.visible{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  #tooltip .tt-link{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    margin-top:8px;
+    font-size:0.75rem;
+    font-weight:600;
+    color:var(--accent-strong);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+  }
+  #tooltip .tt-link:hover, #tooltip .tt-link:focus-visible{ border-bottom-color:currentColor; }
   #tooltip .tt-cat{
     display:inline-block;
     font-size:0.62rem;
@@ -340,13 +352,12 @@
         <svg class="smile" viewBox="0 0 381.33 381.33" xmlns="http://www.w3.org/2000/svg"><circle fill="#3694fd" cx="93.73" cy="93.73" r="31.24"/><circle fill="#3694fd" cx="193.35" cy="93.73" r="31.24"/><path fill="currentColor" d="M315.85,124.97h-45.79c-1.64,0-2.96,1.32-3,2.97-1.56,76.01-63.11,137.56-139.12,139.12-1.64.03-2.97,1.35-2.97,3v45.79c0,1.67,1.36,3.03,3.03,3,104.52-1.61,189.25-86.33,190.85-190.85.03-1.67-1.34-3.03-3-3.03Z"/></svg>
       </div>
       <h1>APAC partner calendar</h1>
-      <p>Build AI Agents 101, NiCE World APAC stops, and Sydney Capstone Training — everything APAC partners need to know, September through December 2026.</p>
+      <p>Build AI Agents 101 and NiCE World APAC stops — everything APAC partners need to know, September through December 2026.</p>
     </div>
 
     <div class="legend">
       <div class="legend-item"><span class="swatch training"></span>Online training — Build AI Agents 101</div>
       <div class="legend-item"><span class="swatch events"></span>General events — NiCE World APAC</div>
-      <div class="legend-item"><span class="swatch capstone"></span>Capstone training — Sydney</div>
       <div class="range-note">Hover or tap any event for date, time and region.</div>
     </div>
   </header>
@@ -355,7 +366,7 @@
 
   <footer class="foot">
     <span>Times shown are local to the event's own timezone (IST / AEST / ACST / SGT / JST). Confirm before booking travel.</span>
-    <span>Compiled for GSI &amp; channel partners · APAC region only · Updated Sep 2, 2026</span>
+    <span>Compiled for GSI &amp; channel partners · APAC region only · Updated Sep 3, 2026</span>
   </footer>
 
 </div>
@@ -383,61 +394,64 @@
       title:"Build AI Agents 101",
       start:[2026,8,15], end:[2026,8,16],
       time:"8:00 AM–12:00 PM IST", place:"APAC region · live online",
-      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session." },
+      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session.",
+      link:"https://nice.csod.com/ui/lms-learning-details/app/event/aca1a540-712a-4031-b898-16fd5b8dc060", linkLabel:"Sign up" },
     { cat:"training", chip:"Build AI Agents 101",
       title:"Build AI Agents 101",
       start:[2026,9,6], end:[2026,9,7],
       time:"8:00 AM–12:00 PM IST", place:"APAC region · live online",
-      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session." },
+      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session.",
+      link:"https://nice.csod.com/ui/lms-learning-details/app/event/aca1a540-712a-4031-b898-16fd5b8dc060", linkLabel:"Sign up" },
     { cat:"training", chip:"Build AI Agents 101",
       title:"Build AI Agents 101",
       start:[2026,10,3], end:[2026,10,4],
       time:"8:00 AM–12:00 PM IST", place:"APAC region · live online",
-      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session." },
+      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session.",
+      link:"https://nice.csod.com/ui/lms-learning-details/app/event/aca1a540-712a-4031-b898-16fd5b8dc060", linkLabel:"Sign up" },
     { cat:"training", chip:"Build AI Agents 101",
       title:"Build AI Agents 101",
       start:[2026,11,15], end:[2026,11,16],
       time:"8:00 AM–12:00 PM IST", place:"APAC region · live online",
-      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session." },
+      note:"NiCE AI Agents (Cognigy) Essentials Technical Workshop — live, instructor-led online session.",
+      link:"https://nice.csod.com/ui/lms-learning-details/app/event/aca1a540-712a-4031-b898-16fd5b8dc060", linkLabel:"Sign up" },
 
     // General events — NiCE World APAC 2026 (APAC city stops only)
     { cat:"events", chip:"NiCE World APAC",
       title:"NiCE World APAC 2026 — Sydney",
       start:[2026,8,3], end:[2026,8,3],
       time:"1:00 PM AEST start", place:"Sydney, Australia",
-      note:"Regional AI · CX · Innovation tour stop. Registration reported full." },
+      note:"Regional AI · CX · Innovation tour stop. Registration reported full.",
+      link:"https://www.nice.com/websites/nice-world-apac", linkLabel:"Registration status" },
     { cat:"events", chip:"NiCE World APAC",
       title:"NiCE World APAC 2026 — Adelaide",
       start:[2026,8,10], end:[2026,8,10],
       time:"2:00 PM ACST start", place:"Adelaide, Australia",
-      note:"Regional AI · CX · Innovation tour stop." },
+      note:"Regional AI · CX · Innovation tour stop.",
+      link:"https://www.nice.com/websites/nice-world-apac", linkLabel:"Sign up" },
     { cat:"events", chip:"NiCE World APAC",
       title:"NiCE World APAC 2026 — Tokyo",
       start:[2026,8,11], end:[2026,8,11],
       time:"Time TBC — see Japan event page", place:"Tokyo, Japan",
-      note:"Regional AI · CX · Innovation tour stop." },
+      note:"Regional AI · CX · Innovation tour stop.",
+      link:"https://www.nice.com/websites/nice-world-apac", linkLabel:"Sign up" },
     { cat:"events", chip:"NiCE World APAC",
       title:"NiCE World APAC 2026 — Mumbai",
       start:[2026,8,23], end:[2026,8,23],
       time:"4:00 PM IST start", place:"Mumbai, India",
-      note:"Regional AI · CX · Innovation tour stop." },
+      note:"Regional AI · CX · Innovation tour stop.",
+      link:"https://www.nice.com/websites/nice-world-apac", linkLabel:"Sign up" },
     { cat:"events", chip:"NiCE World APAC",
       title:"NiCE World APAC 2026 — New Delhi",
       start:[2026,8,25], end:[2026,8,25],
       time:"4:00 PM IST start", place:"New Delhi, India",
-      note:"Regional AI · CX · Innovation tour stop." },
+      note:"Regional AI · CX · Innovation tour stop.",
+      link:"https://www.nice.com/websites/nice-world-apac", linkLabel:"Sign up" },
     { cat:"events", chip:"NiCE World APAC",
       title:"NiCE World APAC 2026 — Singapore",
       start:[2026,9,1], end:[2026,9,1],
       time:"2:00 PM SGT start", place:"Singapore",
-      note:"Regional AI · CX · Innovation tour stop." },
-
-    // Capstone training
-    { cat:"capstone", chip:"Capstone training",
-      title:"Capstone Training — Sydney",
-      start:[2026,8,22], end:[2026,8,25],
-      time:"9:00 AM–5:00 PM AEST · in person", place:"Sydney, Australia",
-      note:"In-person capstone training session for APAC partners." }
+      note:"Regional AI · CX · Innovation tour stop.",
+      link:"https://www.nice.com/websites/nice-world-apac", linkLabel:"Sign up" }
   ];
 
   function dateKey(y,m,d){ return y+"-"+(m+1)+"-"+d; }
@@ -517,10 +531,10 @@
         pill.className = "pill " + ev.cat;
         pill.textContent = ev.chip;
         pill.tabIndex = 0;
-        pill.addEventListener("mouseenter", function(e){ showTip(ev, pill); });
-        pill.addEventListener("mouseleave", hideTip);
-        pill.addEventListener("focus", function(e){ showTip(ev, pill); });
-        pill.addEventListener("blur", hideTip);
+        pill.addEventListener("mouseenter", function(e){ clearHideTimer(); showTip(ev, pill); });
+        pill.addEventListener("mouseleave", scheduleHide);
+        pill.addEventListener("focus", function(e){ clearHideTimer(); showTip(ev, pill); });
+        pill.addEventListener("blur", scheduleHide);
         pill.addEventListener("click", function(e){
           e.stopPropagation();
           if (tip.classList.contains("visible") && tip._current===ev){ hideTip(); }
@@ -550,6 +564,10 @@
   var tip = document.getElementById("tooltip");
   var catLabel = { training:"Online training", events:"General event", capstone:"Capstone training" };
 
+  var hideTimer = null;
+  function clearHideTimer(){ if (hideTimer){ clearTimeout(hideTimer); hideTimer = null; } }
+  function scheduleHide(){ clearHideTimer(); hideTimer = setTimeout(hideTip, 180); }
+
   function showTip(ev, target){
     tip._current = ev;
     tip.innerHTML =
@@ -558,7 +576,8 @@
       '<div class="tt-row"><b>' + fmtRange(ev.start, ev.end) + '</b></div>' +
       '<div class="tt-row">' + ev.time + '</div>' +
       '<div class="tt-row">' + ev.place + '</div>' +
-      (ev.note ? '<div class="tt-row">' + ev.note + '</div>' : '');
+      (ev.note ? '<div class="tt-row">' + ev.note + '</div>' : '') +
+      (ev.link ? '<a class="tt-link" href="' + ev.link + '" target="_blank" rel="noopener">' + (ev.linkLabel || "Sign up") + ' ↗</a>' : '');
 
     var r = target.getBoundingClientRect();
     tip.style.visibility = "hidden";
@@ -577,6 +596,8 @@
     tip._current = null;
   }
   tip.addEventListener("click", function(e){ e.stopPropagation(); });
+  tip.addEventListener("mouseenter", clearHideTimer);
+  tip.addEventListener("mouseleave", scheduleHide);
 
 })();
 </script>
